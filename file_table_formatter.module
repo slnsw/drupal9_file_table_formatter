@@ -100,37 +100,45 @@ function file_table_formatter_get_table_data_from_file($file, $includes_header =
     $file = (object) $file;
   }
 
+  $data = array();
+  $cached_data = cache_get('file_table_formatter:' . $file->fid);
+
+  if ($cached_data === FALSE) {
+    // Currently only supports CSV files
+    if ($file->filemime == 'text/csv') {
+
+      // Read the file
+      $fhandle = fopen($file->uri, 'r');
+      if (!empty($fhandle)) {
+        $contents = file_get_contents(drupal_realpath($file->uri));
+      }
+      fclose($fhandle);
+
+      if (!empty($contents)) {
+        // Parse as CSV
+        $data = str_getcsv($contents, "\n");
+        foreach ($data as &$row) {
+          $row = str_getcsv($row);
+        }
+      }
+    }
+    cache_set('file_table_formatter:' . $file->fid, $data);
+  }
+  else {
+    $data = $cached_data->data;
+  }
+
   $result = array(
     'header' => NULL,
     'rows' => NULL,
   );
 
-  // Currently only supports CSV files
-  if ($file->filemime == 'text/csv') {
-
-    // Read the file
-    $fhandle = fopen($file->uri, 'r');
-    if (!empty($fhandle)) {
-      $contents = fread($fhandle, filesize($file->uri));
+  if (!empty($data)) {
+    // Handle header.
+    if ($includes_header) {
+      $result['header'] = array_shift($data);
     }
-    fclose($fhandle);
-
-    if (!empty($contents)) {
-      // Parse as CSV
-      $data = str_getcsv($contents, "\n");
-      foreach ($data as &$row) {
-        $row = str_getcsv($row);
-      }
-
-      if (!empty($data)) {
-        // Handle header.
-        if ($includes_header) {
-          $result['header'] = array_shift($data);
-        }
-        $result['rows'] = $data;
-      }
-    }
-
+    $result['rows'] = $data;
   }
 
   return $result;
