@@ -1,4 +1,0 @@
-name = File Table Formatter
-description = Display uploaded files as tables
-core = 7.x
-dependencies[] = file

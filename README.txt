@@ -3,14 +3,10 @@ an uploaded file as a table. This allows you easily update table data
 displayed on a site without importing as nodes or another entity. This
 module currently only supports CSV-formatted files.
 
-This module can optionally be used with the DataTables module
-(https://drupal.org/project/datatables) to provide javascript client-side
-sorting of the generated tables.
-
 ## Installation
 
-1. Copy the file_table_formatter module to sites/all/modules directory.
-2. Enable the module at Administer >> Modules.
+1. Copy the file_table_formatter module to modules directory.
+2. Enable the module at Administer >> Extend.
 
 ## Usage
 
@@ -28,16 +24,3 @@ sorting of the generated tables.
    to the field you set the formatter on. When viewing the node, you
    should see tables displayed in place of file links.
 8. To add titles to the tables, use the file Description field.
-
-To enable javascript sorting of tables:
-
-1. Download and install the DataTables module.
-2. Go to Manage Display for the content type with the file field you
-   want to format.
-3. Click the gear next the field and check the "Use javascript sortable
-   data tables" box.
-4. Click Save at the bottom of the page.
-
-NOTE: DataTables tables with this formatter default to disabling pagination
-and a default sorting column. To enable these, override the
-theme_file_table_formatter_table() function in your theme.
