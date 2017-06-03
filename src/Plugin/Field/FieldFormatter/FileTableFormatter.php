@@ -1,10 +1,5 @@
 <?php 
 
-/**
- * @file
- * Contains \Drupal\file_table_formatter\Plugin\Field\FieldFormatter\FileTableFormatter.
- */
-
 namespace Drupal\file_table_formatter\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Cache\Cache;
@@ -31,21 +26,21 @@ class FileTableFormatter extends FileFormatterBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       'header' => FALSE,
-    );
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $elements['header'] = array(
+    $elements['header'] = [
       '#type'           => 'checkbox',
       '#title'          => t('Files include a header row'),
       '#description'    => t('If checked first row will be displayed formatted as a table header'),
       '#default_value'  => $this->getSetting('header'),
-    );
+    ];
     return $elements;
   }
 
@@ -54,9 +49,9 @@ class FileTableFormatter extends FileFormatterBase {
    */
   public function settingsSummary() {
     $includes_header = $this->getSetting('header');
-    $summary[] = t('Files include a header row: @header', array(
+    $summary[] = t('Files include a header row: @header', [
       '@header' => empty($includes_header) ? t('No') : t('Yes'),
-    ));
+    ]);
     return $summary;
   }
   
@@ -65,18 +60,18 @@ class FileTableFormatter extends FileFormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $elements = array();
+    $elements = [];
     
     if ($files = $this->getEntitiesToView($items, $langcode)) {
       $includes_header = $this->getSetting('header');
       $processor = \Drupal::service('file_table_formatter.processor');
       foreach ($files as $delta => $file) {
         $table_data = $processor->getTableDataFromFile($file, $includes_header);
-        $elements[$delta] = array(
+        $elements[$delta] = [
           '#theme' => 'file_table_formatter_table',
           '#data' => $table_data,
           '#datatables' => FALSE,
-        );
+        ];
       }
     }
     return $elements;

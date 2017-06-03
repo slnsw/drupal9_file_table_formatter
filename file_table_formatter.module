@@ -9,14 +9,14 @@
  * Implements hook_theme().
  */
 function file_table_formatter_theme() {
-  return array(
-    'file_table_formatter_table' => array(
+  return [
+    'file_table_formatter_table' => [
       'template' => 'file-table-formatter-table',
-      'variables' => array(
+      'variables' => [
         'data' => NULL,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 }
 
 /**
@@ -24,11 +24,11 @@ function file_table_formatter_theme() {
  * @param array $variables
  */
 function template_preprocess_file_table_formatter_table(&$variables) {
-  $variables['table'] = array(
+  $variables['table'] = [
     '#theme' => 'table',
     '#header' => $variables['data']->getHeader(),
     '#rows' => $variables['data']->getRows(),
-  );
+  ];
   $variables['title'] = $variables['data']->getTitle();
 }
 

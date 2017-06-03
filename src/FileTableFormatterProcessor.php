@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains Drupal\file_table_formatter\FileTableFormatterProcessor
- */
 
 namespace Drupal\file_table_formatter;
 
@@ -14,7 +10,7 @@ class FileTableFormatterProcessor implements FileTableFormatterProcessorInterfac
    * {@inheritdoc}
    */
   public function getTableDataFromFile(\Drupal\file\Entity\File $file, $includes_header = FALSE) {
-    $data = array();
+    $data = [];
 
     // Currently only supports CSV files
     if ($file->getMimeType() == 'text/csv') {

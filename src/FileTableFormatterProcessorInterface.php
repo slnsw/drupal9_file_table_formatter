@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\file_table_formatter\FileTableFormatterProcessorInterface
- */
 
 namespace Drupal\file_table_formatter;
 

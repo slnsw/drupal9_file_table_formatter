@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\file_table_formatter\FileTableData.
- */
-
 namespace Drupal\file_table_formatter;
 
 class FileTableData {
