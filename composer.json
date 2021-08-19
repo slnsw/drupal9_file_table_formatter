@@ -1,0 +1,28 @@
+{
+  "name": "drupal/file_table_formatter",
+  "description": "Display uploaded files as tables",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/file_table_formatter",
+  "authors": [
+    {
+      "name": "Wayne Eaker",
+      "homepage": "https://www.drupal.org/u/zengenuity",
+      "role": "Maintainer"
+    },
+    {
+      "name": "See contributors",
+      "homepage": "https://www.drupal.org/node/2168947/committers"
+    }
+  ],
+  "support": {
+    "issues": "http://drupal.org/project/file_table_formatter"
+  },
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "suggest": {},
+  "require": {
+    "drupal/core": "^8.8 || ^9"
+  },
+  "extra": {}
+}
+
