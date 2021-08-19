@@ -1,7 +1,7 @@
 name: 'File Table Formatter'
 description: 'Display uploaded files as tables'
-core: 8.x
+core_version_requirement: ^8 || ^9
 type: module
 dependencies:
-  - file
+    - drupal:file
 
